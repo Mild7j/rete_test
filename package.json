@@ -1,0 +1,37 @@
+{
+	"name": "manvas",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@fontsource/fira-mono": "^4.5.10",
+		"@neoconfetti/svelte": "^1.0.0",
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.30.4",
+		"@types/cookie": "^0.5.1",
+		"svelte": "^3.59.2",
+		"svelte-check": "^3.4.3",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"vite": "^4.4.2"
+	},
+	"type": "module",
+	"dependencies": {
+		"@sveltejs/adapter-static": "^2.0.3",
+		"@types/three": "^0.156.0",
+		"rete": "^2.0.3",
+		"rete-area-3d-plugin": "^2.0.4",
+		"rete-area-plugin": "^2.0.4",
+		"rete-connection-plugin": "^2.0.2",
+		"rete-render-utils": "^2.0.2",
+		"rete-scopes-plugin": "^2.1.0",
+		"rete-svelte-plugin": "^2.0.1",
+		"sass": "^1.77.6",
+		"three": "^0.156.1"
+	}
+}
