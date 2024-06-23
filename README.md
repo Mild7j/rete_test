@@ -39,8 +39,10 @@ You can preview the production build with `npm run preview`.
 >
 
 # Reference
-> https://retejs.org/docs
-> https://retejs.org/docs/development/rete-kit
-> https://retejs.org/examples/context-menu
-> https://codesandbox.io/p/sandbox/rete-js-svelte (https://codesandbox.io/examples/package/rete-svelte-plugin)
-> https://github.com/retejs/svelte-plugin
+```bash
+ https://retejs.org/docs
+ https://retejs.org/docs/development/rete-kit
+ https://retejs.org/examples/context-menu
+ https://codesandbox.io/p/sandbox/rete-js-svelte (https://codesandbox.io/examples/package/rete-svelte-plugin)
+ https://github.com/retejs/svelte-plugin
+```
