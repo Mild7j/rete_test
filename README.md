@@ -37,6 +37,10 @@ You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 >
+
 # Reference
-https://retejs.org/docs
-https://retejs.org/docs/development/rete-kit
+> https://retejs.org/docs
+> https://retejs.org/docs/development/rete-kit
+> https://retejs.org/examples/context-menu
+> https://codesandbox.io/p/sandbox/rete-js-svelte (https://codesandbox.io/examples/package/rete-svelte-plugin)
+> https://github.com/retejs/svelte-plugin

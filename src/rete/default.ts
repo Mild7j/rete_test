@@ -1,6 +1,6 @@
 import { ClassicPreset as Classic, GetSchemes, NodeEditor } from 'rete';
 
-import { Area2D, AreaPlugin } from 'rete-area-plugin';
+import { Area2D, AreaExtensions, AreaPlugin } from 'rete-area-plugin';
 import {
   ConnectionPlugin,
   Presets as ConnectionPresets,
@@ -11,6 +11,18 @@ import {
   SvelteArea2D,
   Presets as SveltePresets,
 } from 'rete-svelte-plugin';
+
+import {
+  AutoArrangePlugin,
+  Presets as ArrangePresets
+} from 'rete-auto-arrange-plugin';
+
+import {
+  ContextMenuExtra,
+  ContextMenuPlugin,
+  Presets as ContextMenuPresets
+} from 'rete-context-menu-plugin';
+import { Area } from 'rete-area-3d-plugin';
 
 type Node = NumberNode | AddNode;
 type Conn =
@@ -50,25 +62,45 @@ class AddNode extends Classic.Node {
   }
 }
 
-type AreaExtra = Area2D<Schemes> | SvelteArea2D<Schemes>;
+type AreaExtra = Area2D<Schemes> | SvelteArea2D<Schemes> | ContextMenuExtra;
 
 const socket = new Classic.Socket('socket');
 
 export async function createEditor(container: HTMLElement) {
+  console.log("default");
   const editor = new NodeEditor<Schemes>();
   const area = new AreaPlugin<Schemes, AreaExtra>(container);
   const connection = new ConnectionPlugin<Schemes, AreaExtra>();
 
   const svelteRender = new SveltePlugin<Schemes, AreaExtra>();
+  const arrange = new AutoArrangePlugin<Schemes>();
+  const contextMenu = new ContextMenuPlugin<Schemes>({
+    items: ContextMenuPresets.classic.setup([
+      ["AddNode", () => new AddNode()],
+      ["category", [["NumberNode", () => new NumberNode(1)],
+                    ["AddNode", () => new AddNode(0)]]]
+    ])
+  });
 
-  editor.use(area);
+  area.use(contextMenu);
 
-  area.use(svelteRender);
-  area.use(connection);
+  AreaExtensions.selectableNodes(area, AreaExtensions.selector(), {
+    accumulating: AreaExtensions.accumulateOnCtrl()
+  });
 
   connection.addPreset(ConnectionPresets.classic.setup());
 
   svelteRender.addPreset(SveltePresets.classic.setup());
+  svelteRender.addPreset(SveltePresets.contextMenu.setup());
+
+  arrange.addPreset(ArrangePresets.classic.setup());
+
+  editor.use(area);
+  area.use(svelteRender);
+  area.use(connection);
+  area.use(arrange);
+
+  AreaExtensions.simpleNodesOrder(area);
 
   const a = new NumberNode(1);
   const b = new NumberNode(1);
@@ -84,6 +116,9 @@ export async function createEditor(container: HTMLElement) {
   await area.nodeViews.get(a.id)?.translate(100, 100);
   await area.nodeViews.get(b.id)?.translate(100, 300);
   await area.nodeViews.get(add.id)?.translate(400, 150);
+
+  await arrange.layout();
+  AreaExtensions.zoomAt(area, editor.getNodes());
 
   return {
     destroy: () => area.destroy(),

@@ -14,6 +14,9 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.30.4",
 		"@types/cookie": "^0.5.1",
+		"rete-auto-arrange-plugin": "^2.0.1",
+		"rete-context-menu-plugin": "^2.0.3",
+		"rete-svelte-plugin": "^2.0.1",
 		"svelte": "^3.59.2",
 		"svelte-check": "^3.4.3",
 		"tslib": "^2.4.1",
@@ -30,7 +33,6 @@
 		"rete-connection-plugin": "^2.0.2",
 		"rete-render-utils": "^2.0.2",
 		"rete-scopes-plugin": "^2.1.0",
-		"rete-svelte-plugin": "^2.0.1",
 		"sass": "^1.77.6",
 		"three": "^0.156.1"
 	}
